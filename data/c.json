@@ -1,0 +1,49 @@
+{
+	"Questoes":[
+        {
+	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran a soma dos numeros lidos.",
+	    	"Resposta": "void leint ()\n{\n    int lista [1024],i=0;\n    do {\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0)\n        {\n            printSoma (lista,i+1);\n        }\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid printSoma (int L[],int size)\n{\n    int i,soma=0;\n    for (i = 0; i < size; ++i)\n    {\n        soma = soma + L[i];\n    }\n    printf(\"%d\",soma);\n}"
+	    },
+	    {
+	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran o maior elemento da sequencia.",
+	    	"Resposta": "void leint2 ()\n{\n    int lista [1024],i=0;\n    do{\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0)\n        {\n            printMaior (lista,i);\n        }\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid printMaior (int L[],int size)\n{\n    int i,maior=L[0];\n    for (i = 1; i < size; ++i)\n    {\n        if (L[i]> maior)\n            maior = L[i];\n    }\n    printf(\"%d\",maior);\n}\n"
+	    },
+	    {
+	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran a media da sequencia.",
+	    	"Resposta": "void leint3 ()\n{\n    int lista [1024],i=0;\n    do{\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0)\n        {\n            printMedia (lista,i);\n        }\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid printMedia (int L[],int size)\n{\n    int i,soma=0;\n    for (i=0;i<size;i++)\n    {\n        soma = soma + L[i];\n    }\n    if (size ==0)\n        printf(\"0\");\n    else\n        printf(\"%f\",((float)soma/(float)size));\n}\n"
+	    },
+	    {
+	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran o segundo maior elemento.",
+	    	"Resposta": "void leint4 ()\n{\n    int lista [1024],i=0;\n    do{\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0 && i>=2)\n        {\n            segMaior (lista,i);\n        }\n        else if (lista[i]==0 && i<2)\n            printf(\"Lista com menos que dois elementos.\");\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid segMaior (int L[],int size)\n{\n    int i,maior,segmaior;\n    if (L[0]>=L[1])\n    {\n        maior =L[0];\n        segmaior=L[1];\n    }\n    else\n    {\n        segmaior =L[0];\n        maior=L[1];\n    }\n    for (i=1;i<size;i++)\n    {\n        if (L[i]> maior)\n        {\n            segmaior=maior;\n            maior = L[i];\n        }\n    }\n    printf(\"%d\", segmaior);\n}\n"
+	    },
+	    {
+	    	"Pergunta": "Defina uma funcao int bitsUm (unsigned int n) que calcula o numero de bits iguais a 1 usados na representacao binaria de um dado numero n.",
+	    	"Resposta": "int bitsUm (unsigned int x){\n   int r=0;\n   do{\n        if (x%2==1)\n            r=r+1;\n        x=x>>1;\n    } while (x!=0);\n    return r;\n}\n"
+	    },
+		{
+			"Pergunta": "TEST",
+			"Resposta": "TEST"
+		},
+		{
+			"Pergunta": "TEST",
+			"Resposta": "TEST"
+		},
+		{
+			"Pergunta": "TEST",
+			"Resposta": "TEST"
+		},
+		{
+			"Pergunta": "TEST",
+			"Resposta": "TEST"
+		},
+		{
+			"Pergunta": "TEST",
+			"Resposta": "TEST"
+		},
+		{
+			"Pergunta": "TEST",
+			"Resposta": "TEST"
+		}
+    ],
+    "Total":10
+}

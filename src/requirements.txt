@@ -1,0 +1,2 @@
+fpdf==1.7.2
+simple_term_menu==1.4.1
