@@ -41,7 +41,7 @@ def update_json(file,amount):
 
     ## Guardar nova versão do JSON
     jsonFile = open(file, "w+")
-    jsonFile.write(json.dumps(data))
+    jsonFile.write(json.dumps(data, indent=2))
     jsonFile.close()
 
 def menu():
