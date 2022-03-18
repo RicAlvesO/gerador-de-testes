@@ -26,7 +26,7 @@ def update_json(file,amount):
         while x.isnumeric()==False:
             print('\033c')  
             x=input("Numero desejado de perguntas a adicionar: ")
-        amount=x-1
+        amount=int(x)-1
     amount+=1
 
     while amount:
@@ -35,7 +35,11 @@ def update_json(file,amount):
         q=get_multiline()
         print('Resposta: ')
         a=get_multiline()
-        data["Questoes"].append({"Pergunta":q,"Resposta":a})
+        print('Exemplo\nInput: ')
+        i=get_multiline()
+        print('Output: ')
+        o=get_multiline()
+        data["Questoes"].append({"Pergunta":q,"Resposta":a,"Exemplo":{"Input":i,"Output":o}})
         data["Total"]+=1
         amount-=1
 

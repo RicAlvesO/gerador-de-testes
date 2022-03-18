@@ -58,7 +58,7 @@ def get_q(file, amount, title):
     quest=[]
     resp=[]
     for ind in indexs:
-        quest.append(' '.join((str(i),") ",((data["Questoes"][ind])["Pergunta"]))))
+        quest.append(' '.join((str(i),") ",((data["Questoes"][ind])["Pergunta"]),'\n\nExemplo\nInput:',(((data["Questoes"][ind])["Exemplo"])["Input"]),'\nOutput:',(((data["Questoes"][ind])["Exemplo"])["Output"]))))
         resp.append(' '.join(("Resposta ",str(i),":\n",((data["Questoes"][ind])["Resposta"]))))
         i+=1
 
