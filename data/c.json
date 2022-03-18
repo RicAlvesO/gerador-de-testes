@@ -19,31 +19,7 @@
 	    {
 	    	"Pergunta": "Defina uma funcao int bitsUm (unsigned int n) que calcula o numero de bits iguais a 1 usados na representacao binaria de um dado numero n.",
 	    	"Resposta": "int bitsUm (unsigned int x){\n   int r=0;\n   do{\n        if (x%2==1)\n            r=r+1;\n        x=x>>1;\n    } while (x!=0);\n    return r;\n}\n"
-	    },
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST"
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST"
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST"
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST"
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST"
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST"
-		}
+	    }
     ],
-    "Total":10
+    "Total":5
 }

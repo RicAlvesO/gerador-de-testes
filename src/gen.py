@@ -1,7 +1,6 @@
 import json
 import random
 from datetime import datetime
-from turtle import title
 from simple_term_menu import TerminalMenu
 from fpdf import FPDF
 
