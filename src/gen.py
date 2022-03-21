@@ -52,6 +52,10 @@ def get_q(file, amount, title):
     with open(file, "r") as read_file:
         data = json.load(read_file)
     
+    if data["Total"]<amount:
+        print('!QUESTOES INSUFICIENTES!')
+        return
+
     #Escolha aleatória de n perguntas
     indexs = random.sample(range(0, data["Total"]), amount)
     i=1;

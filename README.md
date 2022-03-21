@@ -7,7 +7,7 @@ Gerador de testes modelo para várias linguagens de programação.
 - **[Linguages](#Linguages)**
 - **[Requisitos](#Requisitos)**
 - **[Como Utilisar](#Como-Utilisar)**
-- **[Como Pode Contribuir](#Known-Issues)**
+- **[Como Pode Contribuir](#Como-Pode-Contribuir)**
 
 ## Linguagens
 
