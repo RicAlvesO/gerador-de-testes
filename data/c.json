@@ -1,85 +1,365 @@
 {
-	"Questoes":[
-        {
-	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran a soma dos numeros lidos.",
-	    	"Resposta": "void leint ()\n{\n    int lista [1024],i=0;\n    do {\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0)\n        {\n            printSoma (lista,i+1);\n        }\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid printSoma (int L[],int size)\n{\n    int i,soma=0;\n    for (i = 0; i < size; ++i)\n    {\n        soma = soma + L[i];\n    }\n    printf(\"%d\",soma);\n}",
-			"Exemplo":{
-				"Input":"TEST",
-				"Output":"TEST"
-			}
-		},
-	    {
-	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran o maior elemento da sequencia.",
-	    	"Resposta": "void leint2 ()\n{\n    int lista [1024],i=0;\n    do{\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0)\n        {\n            printMaior (lista,i);\n        }\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid printMaior (int L[],int size)\n{\n    int i,maior=L[0];\n    for (i = 1; i < size; ++i)\n    {\n        if (L[i]> maior)\n            maior = L[i];\n    }\n    printf(\"%d\",maior);\n}\n",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-	    },
-	    {
-	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran a media da sequencia.",
-	    	"Resposta": "void leint3 ()\n{\n    int lista [1024],i=0;\n    do{\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0)\n        {\n            printMedia (lista,i);\n        }\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid printMedia (int L[],int size)\n{\n    int i,soma=0;\n    for (i=0;i<size;i++)\n    {\n        soma = soma + L[i];\n    }\n    if (size ==0)\n        printf(\"0\");\n    else\n        printf(\"%f\",((float)soma/(float)size));\n}\n",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-	    },
-	    {
-	    	"Pergunta": "Defina um programa que le (usando a funcao scanf uma sequencia de numeros inteiros terminada com o numero 0 e imprime no ecran o segundo maior elemento.",
-	    	"Resposta": "void leint4 ()\n{\n    int lista [1024],i=0;\n    do{\n        scanf (\"%d\",&lista[i]);\n        if (lista[i]==0 && i>=2)\n        {\n            segMaior (lista,i);\n        }\n        else if (lista[i]==0 && i<2)\n            printf(\"Lista com menos que dois elementos.\");\n        i++;\n    }while (lista [i-1]!=0);\n}\nvoid segMaior (int L[],int size)\n{\n    int i,maior,segmaior;\n    if (L[0]>=L[1])\n    {\n        maior =L[0];\n        segmaior=L[1];\n    }\n    else\n    {\n        segmaior =L[0];\n        maior=L[1];\n    }\n    for (i=1;i<size;i++)\n    {\n        if (L[i]> maior)\n        {\n            segmaior=maior;\n            maior = L[i];\n        }\n    }\n    printf(\"%d\", segmaior);\n}\n",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-	    },
-	    {
-	    	"Pergunta": "Defina uma funcao int bitsUm (unsigned int n) que calcula o numero de bits iguais a 1 usados na representacao binaria de um dado numero n.",
-	    	"Resposta": "int bitsUm (unsigned int x){\n   int r=0;\n   do{\n        if (x%2==1)\n            r=r+1;\n        x=x>>1;\n    } while (x!=0);\n    return r;\n}\n",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-	    },
-		{
-			"Pergunta":"TEST",
-			"Resposta":"TEST",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-		},
-		{
-			"Pergunta": "TEST",
-			"Resposta": "TEST",
-			"Exemplo": {
-				"Input": "TEST",
-				"Output": "TEST"
-			}
-		}
-    ],
-    "Total":10
+  "Questoes": [
+    {
+      "Pergunta": "Defina uma funcao int trailingZ (unsigned int n) que calcula o numero de bits a 0 no final da representacao binaria de um numero (i.e., o expoente da maior potencia de 2 que e divisor desse numero).",
+      "Resposta": "int trailingZ (unsigned int n) {\n    int r=0;\n    while (n%2==0){\n    \tn=n>>1;\n    \tr=r+1;\n    }\n    return r;\n}",
+      "Exemplo": {
+        "Input": "trailingZ(8)",
+        "Output": "3"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int qDig (unsigned int n) que calcula o numero de digitos necessarios para escrever o inteiro n em base decimal.",
+      "Resposta": "int qDig (unsigned int n) {\n    int r = 0,b=1;\n    while (n/b>=1)\n    {\n    \tb=b*10;\n    \tr=r+1;\n    }\n    if (n==0)\n    \tr=1;\n    return r;\n}",
+      "Exemplo": {
+        "Input": "qDig (440)",
+        "Output": "3"
+      }
+    },
+    {
+      "Pergunta": "Apresente uma definicao da funcao pre-definida em C int strlen (char str[]) que calcula o comprimento de uma string.",
+      "Resposta": "int mystrlen(char str[]) {\n\tint i;\n\tfor (i=0;str[i]!='\\0';i++);\n    return i;\n}",
+      "Exemplo": {
+        "Input": "mystrlen(\"Hello World\")",
+        "Output": "11"
+      }
+    },
+    {
+      "Pergunta": "Apresente uma definicao da funcao pre-definida em C char *strcat (char s1[], char s2[]) que concatena a string s2 a s1 (retornando o endereco da primeira).",
+      "Resposta": "char *mystrcat(char s1[], char s2[]) {\n    int i,i2;\n    for (i=0;s1[i]!='\\0';i++);\n    for (i2=0;s2[i2]!='\\0';i2++,i++)\n    \ts1[i]=s2[i2];\n    s1[i]='\\0';\n    return s1;\n}",
+      "Exemplo": {
+        "Input": "mystrcat(\"Hello \",\"World!\")",
+        "Output": "\"Hello World!\""
+      }
+    },
+    {
+      "Pergunta": "Apresente uma definicao da funcao pre-definida em C char *strcpy (char *dest, char source[]) que copia a string source para dest retornando o valor desta ultima.",
+      "Resposta": "char *mystrcpy(char s1[], const char s2[]) {\n\tint i;\n\tfor (i=0;s2[i]!='\\0';i++)\n\t{\n\t\ts1[i]=s2[i];\n\t}\n\ts1[i]='\\0';\n    return s1;\n}",
+      "Exemplo": {
+        "Input": "mystrcpy(\"        \",\"Hello\")",
+        "Output": "\"Hello\""
+      }
+    },
+    {
+      "Pergunta": "Apresente uma definicao da funcao pre-definida em C int strcmp (char s1[], char s2[]) que compara (lexicograficamente) duas strings. O resultado devera ser\n-> 0 se as strings forem iguais\n-> <0 se s1 < s2\n-> >0 se s1 > s2",
+      "Resposta": "int mystrcmp(char s1[], char s2[]) {\n\tint i;\n\tfor (i = 0; s1[i]==s2[i] && (s1[i]!='\\0' && s2[i]!='\\0') ; ++i);\n    return (s1[i]-s2[i]);\n}",
+      "Exemplo": {
+        "Input": "mystrcmp(\"hello\",\"world\")",
+        "Output": "-15"
+      }
+    },
+    {
+      "Pergunta": "Apresente uma definicao da funcao pre-definida em C char *strstr (char s1[], char s2[]) que determina a posicao onde a string s2 ocorre em s1. A funcao devera retornar NULL caso s2 nao ocorra em s1.",
+      "Resposta": "char * strstrr (char s1[], char s2[]){\n\tint i,j;\n\tj = 0;\n\tfor (i = 0; s1[i] != '\\0' && s2[j] != '\\0'; ++i)\n\t{\n\t\tif (s1[i] == s2[j]) ++j;\n\t\telse j = 0;\n\t}\n\tif (s2[j] == '\\0') return s1+ (i-j);\n\t\telse return NULL;\n}",
+      "Exemplo": {
+        "Input": "strstr(\"Hello World\", \"or\")",
+        "Output": "\"orld\""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void strrev (char s[]) que inverte uma string.",
+      "Resposta": "void strrev (char s[]) {\n\tint i,z,mid;\n\tchar t;\n\tfor (i=0;s[i]!='\\0';i++);\n\ti--;\n\tmid=i/2;\n\tfor (z = 0; z<=mid; ++z)\n\t{\n\t\tt=s[z];\n\t\ts[z]=s[i];\n\t\ts[i]=t;\n\t\ti--;\n\t}\n}",
+      "Exemplo": {
+        "Input": "strrev(\"Hello World\")",
+        "Output": "\"dlroW olleH\""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void strnoV (char s[]) que retira todas as vogais de uma string.",
+      "Resposta": "void strnoV (char t[]){\n    int l=0,e=0;\n    while (t[l]!='\\0')\n    {\n    \tif (t[l]=='a'||t[l]=='e'||t[l]=='i'||t[l]=='o'||t[l]=='u'||t[l]=='A'||t[l]=='E'||t[l]=='I'||t[l]=='O'||t[l]=='U')\n    \t\tl++;\n    \telse\n    \t{\n    \t\tt[e++]=t[l++];\n    \t}\n    }\n    t[e]='\\0';\n}",
+      "Exemplo": {
+        "Input": "strnoV(\"Hello World\")",
+        "Output": "\"Hll Wrld\""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void truncW (char t[], int n) que dado um texto t com varias palavras (as palavras estao separadas em t por um ou mais espacos) e um inteiro n, trunca todas as palavras de forma a terem no maximo n caracteres. \nPor exemplo, se a string txt contiver \"liberdade, igualdade e fraternidade\", a invocacao de truncW (txt, 4) deve fazer com que passe a estar la armazenada a string \"libe igua e frat\".",
+      "Resposta": "void truncW (char t[], int n){\n    int l=0,e=0,count=0;\n    while (t[l]!='\\0')\n    {\n    \tif (t[l]==' ')\n    \t{\n   \t\t\tt[e]=t[l];\n    \t\tl++;\n    \t\te++;\n   \t\t\tcount=0;\n   \t\t}\n   \t\telse if (count==n)\n   \t\t{\n   \t\t\tl++;\n   \t\t}\n   \t\telse\n   \t\t\t{\n   \t\t\t\tt[e]=t[l];\n   \t\t\t\tl++;\n   \t\t\t\te++;\n   \t\t\t\tcount ++;\n   \t\t\t}\t\n    }\n    t[e]='\\0';\n}",
+      "Exemplo": {
+        "Input": "truncW(\"Hello World\", 2)",
+        "Output": "\"He Wo\""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao char charMaisfreq (char s[]) que determina qual o caracter mais frequente numa string.\nA funcao devera retornar 0 no caso de s ser a string vazia.",
+      "Resposta": "int contaChar (char s [], char a)\n{\n\tint i,count=0;\n\tfor (i=0;s[i]!='\\0';i++)\n\t{\n\t\tif (s[i]==a)\n\t\t\tcount ++;\n\t}\n\treturn count;\n}\nchar charMaisfreq (char s[]) {\n\tint i,imax=0;\n\tchar max;\n\tfor (i=0;s[i]!='\\0';i++)\n\t{\n\t\tif (imax < contaChar (s,s[i]))\n\t\t{\n\t\t\timax = contaChar (s,s[i]);\n\t\t\tmax = s[i];\n\t\t}\n\t}\n\tif (s[0]=='\\0')\n\t\tmax ='\\0';\n    return max;\n}",
+      "Exemplo": {
+        "Input": "charMaisfreq(\"Hello World\")",
+        "Output": "'l'"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int iguaisConsecutivos (char s[]) que, dada uma string s calcula o comprimento da maior sub-string com caracteres iguais. \nPor exemplo, iguaisConsecutivos(\"aabcccaac\") deve dar como resultado 3, correspondendo `a repeticao \"ccc\".",
+      "Resposta": "int iguaisConsecutivos (char s[]) {\n    int i,count=0,topc=0;\n    char Last='\\0';\n    for (i = 0; s[i]!='\\0'; ++i)\n    {\n    \tif (s[i]==Last)\n    \t\tcount ++;\n    \telse\n    \t{\n    \t\tLast=s[i];\n    \t\tif (count > topc)\n    \t\t\ttopc=count;\n    \t\tcount=1;\n    \t}\n    }\n    if (count > topc)\n    \t\t\ttopc=count;\n    return topc;\n}",
+      "Exemplo": {
+        "Input": "iguaisConsecutivos(\"Hello World\")",
+        "Output": "2"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int difConsecutivos (char s[]) que, dada uma string s calcula o comprimento da maior sub-string com caracteres diferentes. \nPor exemplo, difConsecutivos (\"aabcccaac\") deve dar como resultado 3, correspondendo `a string \"abc\".",
+      "Resposta": "int difConsecutivos(char s[]) \n{\n\tint i,count=0,topc=0;\n    char Last='\\0';\n    for (i = 0; s[i]!='\\0'; ++i)\n    {\n    \tif (s[i]!=Last)\n    \t\t{\n    \t\t\tcount ++;\n    \t\t\tLast=s[i];\n    \t\t}\n    \telse\n    \t{\n    \t\tif (count > topc)\n    \t\t\ttopc=count;\n    \t\tcount=1;\n    \t}\n    }\n    if (count > topc)\n    \t\t\ttopc=count;\n\treturn topc;   \n}",
+      "Exemplo": {
+        "Input": "difConsecutivos(\"Hello\")",
+        "Output": "3"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int maiorPrefixo (char s1 [], char s2 []) que calcula o comprimento do maior prefixo comum entre as duas strings.",
+      "Resposta": "int maiorPrefixo (char s1 [], char s2 []) {\n    int i,count=0;\n    for (i=0;s1[i]!='\\0' && s2[i]!='\\0';i++)\n    {\n    \tif (s1[i]==s2[i])\n    \t\tcount ++;\n    \telse\n    \t\tbreak;\n    }\n    return count;\n}",
+      "Exemplo": {
+        "Input": "maiorPrefixo (\"abccba\",\"ababcc\")",
+        "Output": "2"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int maiorSufixo (char s1 [], char s2 []) que calcula o comprimento do maior sufixo comum entre as duas strings.",
+      "Resposta": "int maiorSufixo (char s1 [], char s2 []) {\n    int i1,i2,count=0;\n    for (i1 = 0; s1[i1]!='\\0'; ++i1);\n    for (i2 = 0; s2[i2]!='\\0'; ++i2);\n    i1--;\n\ti2--;\n    for (;i1>=0 && i2>=0;i1--,i2--)\n    {\n    \tif (s1[i1]==s2[i2])\n    \t\tcount ++;\n    \telse\n    \t\tbreak;\n    }\n    return count;\n}",
+      "Exemplo": {
+        "Input": "maiorSufixo(\"ababba\",\"baabba\")",
+        "Output": "4"
+      }
+    },
+    {
+      "Pergunta": "Defina a funcao int sufPref (char s1[], char s2[]) que calcula o tamanho do maior sufixo de s1 que e um prefixo de s2. \nPor exemplo sufPref(\"batota\",\"totalidade\") deve dar como resultado 4, uma vez que a string \"tota\" e um sufixo de \"batota\" e um prefixo de \"totalidade\".",
+      "Resposta": "int sufPref (char s1[], char s2[]) {\n    int i1,i2,count=0,size1;\n    for (i1 = 0; s1[i1]!='\\0'; ++i1);\n    for (i2 = 0; s2[i2]!='\\0'; ++i2);\n    i1--;\n\ti2--;\n\tsize1=i1;\n    for (;i1>=0 && i2>=0;i2--)\n    {\n    \tif (s1[i1]==s2[i2])\n    \t{\n    \t\tcount ++;\n    \t\ti1--;\n    \t}\n    \telse if (i2==0)\n    \t\tbreak;\n    \telse\n    \t{\n    \t    i1=size1;\n    \t\tcount =0;\n    \t}\n    }\n    return count;\n}",
+      "Exemplo": {
+        "Input": "sufpref(\"abccba\",\"cbacba\")",
+        "Output": "3"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int contaPal (char s[]) que conta as palavras de uma string. \nUma palavra e uma sequencia de caracteres (diferentes de espaco) terminada por um ou mais espacos. \nAssim se a string p tiver o valor \"a a bb a\", o resultado de contaPal (p) deve ser 4.",
+      "Resposta": "int contaPal (char s[]) {\n    int i,count=0;\n    char last='\\0';\n    for (i=0;s[i]!='\\0';i++)\n    {\n    \tif (s[i]!=' ' && (last ==' ' || last =='\\0'))\n    \t{\n    \t\tcount ++;\n    \t}\n    \tlast =s[i];\n    }\n    return count;\n}",
+      "Exemplo": {
+        "Input": "contaPal(\"Hello World!\")",
+        "Output": "2"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int contaVogais (char s[]) que retorna o numero de vogais da string s. \nNao se esqueca de considerar tanto maiusculas como minusculas.",
+      "Resposta": "int contaVogais (char s[]) {\n    int i,count=0;\n    for (i = 0; s[i]!='\\0'; ++i)\n    {\n    \tif (s[i]=='a' || s[i]=='e' ||s[i]=='i' ||s[i]=='o' ||s[i]=='u' ||s[i]=='A' ||s[i]=='E' ||s[i]=='I' ||s[i]=='O' ||s[i]=='U')\n    \t\tcount ++;\n    }\n    return count;\n}",
+      "Exemplo": {
+        "Input": "contaVogais(\"HELLO world!\")",
+        "Output": "3"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int contida (char a[], char b[]) que testa se todos os caracteres da primeira string tambem aparecem na segunda.\nPor exemplo, contida \"braga\" \"bracara augusta\" deve retornar verdadeiro enquanto que contida \"braga\" \"bracarense\" deve retornar falso.",
+      "Resposta": "int contida (char a[], char b[]) {\n    int i1,i2,count=0,result=1;\n    for (i1=0; a[i1]!='\\0';i1++)\n    {\n        for (i2=0;b[i2]!='\\0';i2++)\n        {\n            if (a[i1]==b[i2])\n            {\n                count++;\n                break;\n            }\n        }\n    }\n    if (count == i1)\n        result =1;\n    else\n        result =0;\n    return result;\n}",
+      "Exemplo": {
+        "Input": "contida(\"havia\",\"viaja hoje\")",
+        "Output": "1"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int palindorome (char s[]) que testa se uma palavra e palindrome, i.e., le-se de igual forma nos dois sentidos.",
+      "Resposta": "int palindroma (char s[]) {\n    int inicio=0,fim=0,result=1;\n    for (fim=0;s[fim]!='\\0';fim++);\n    fim--;\n    for (inicio=0; inicio <= fim ; inicio++,fim--)\n    {\n        if (s[inicio]!=s[fim])\n        {\n            result =0;\n            break;\n        }\n    }\n    return result;\n}",
+      "Exemplo": {
+        "Input": "palindroma(\"ana\")",
+        "Output": "1"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int remRep (char x[]) que elimina de uma string todos os caracteres que se repetem sucessivamente deixando la apenas uma copia. \nA funcao devera retornar o comprimento da string resultante. \nAssim, por exemplo, ao invocarmos a funcao com uma vector contendo \"aaabaaabbbaaa\", o vector deve passar a conter a string \"ababa\" e a funcao devera retornar o valor 5.",
+      "Resposta": "int remRep (char texto []) {\n    int r = 0,l=0,e=0;\n    char last='\\0';\n    while (texto[l]!='\\0')\n    {\n    \tif (last ==texto[l])\n    \t\tl++;\n    \telse\n    \t{\n    \t\tlast = texto[l];\n    \t\ttexto[e]=texto[l];\n    \t\tl++;\n    \t\te++;\n    \t}\n    }\n    texto[e]='\\0';\n    for (; texto[r]!='\\0';++r);\n    return r;\n}",
+      "Exemplo": {
+        "Input": "remRep(\"heeello   wworrrrllld\")",
+        "Output": "\"helo world\""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int limpaEspacos (char t[]) que elimina repeticoes sucessivas de espacos por um unico espaco. A funcao deve retornar o comprimento da string resultante.",
+      "Resposta": "int limpaEspacos (char texto[]) {\n    int r = 0,l=0,e=0;\n    char last='\\0';\n    while (texto[l]!='\\0')\n    {\n    \tif (last ==texto[l] && last ==' ' && texto[l] ==' ') \n    \t\tl++;\n    \telse\n    \t{\n    \t\tlast = texto[l];\n    \t\ttexto[e]=texto[l];\n    \t\tl++;\n    \t\te++;\n    \t}\n    }\n    texto[e]='\\0';\n    for (; texto[r]!='\\0';++r);\n    return r;\n}",
+      "Exemplo": {
+        "Input": "limpaEspacos(\"hi    new     world\")",
+        "Output": "12 (\"hi new world\")"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void insere (int v[], int N, int x) que insere um elemento (x) num vector ordenado. \nAssuma que as N primeiras posicoes do vector estao ordenadas e que por isso, apos a insercao o vector tera as primeiras N+1 posicoes ordenadas.",
+      "Resposta": "void insere (int s[], int N, int x){\n\tint l=0,guarda;\n\twhile (l<N)\n\t{\n\t\tif (x<=s[l])\n\t\t{\n\t\t\tguarda = s[l];\n\t\t\ts[l]=x;\n\t\t\tx=guarda;\n\t\t\tl++;\n\t\t}\n\t\telse\n\t\t{\n\t\t\tl++;\n\t\t}\n\t}\n\ts[l]= x;\n}",
+      "Exemplo": {
+        "Input": "insere([1,2,4,5], 4, 3)",
+        "Output": "[1,2,3,4,5]"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void merge (int r [], int a[], int b[], int na, int nb) que, dados vectores ordenados a (com na elementos) e b (com nb elementos), preenche o vector r (com na+nb elementos) com os elementos de a e b ordenados.",
+      "Resposta": "void merge (int r [], int a[], int b[], int na, int nb){\n\tint i=0,ia=0,ib=0;\n\twhile (ia!=na && ib!=nb)\n\t{\n\t\tif (a[ia]<=b[ib])\n\t\t{\n\t\t\tr[i]=a[ia];\n\t\t\tia++;\n\t\t}\n\t\telse\n\t\t{\n\t\t\tr[i]=b[ib];\n\t\t\tib++;\n\t\t}\n\t\ti++;\n\t}\n\tif (ia==na)\n\t{\n\t\twhile (ib!=nb)\n\t\t{\n\t\t\tr[i]=b[ib];\n\t\t\ti++;\n\t\t\tib++;\n\t\t}\n\t}\n\telse\n\t{\n\t\twhile (ia!=na)\n\t\t{\n\t\t\tr[i]=a[ia];\n\t\t\ti++;\n\t\t\tia++;\n\t\t}\n\t}\n}",
+      "Exemplo": {
+        "Input": "merge([],[1,3,5],[2,4],3,2)",
+        "Output": "[1,2,3,4,5]"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int crescente (int a[], int i, int j) que testa se os elementos do vector a, entre as posicoes i e j (inclusive) estao ordenados por ordem crescente. \nA funcao deve retornar 1 ou 0 consoante o vector esteja ou nao ordenado.",
+      "Resposta": "int crescente (int a[], int i, int j){\n\tint r=1,last=a[i];\n\ti++;\n\tfor (; i <=j; ++i)\n\t{\n\t\tif (a[i]<last)\n\t\t\tr=0;\n\t\tlast=a[i];\n\t}\n\treturn r;\n}",
+      "Exemplo": {
+        "Input": "crescente([4,3,5,8,2],1,3)",
+        "Output": "1"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int retiraNeg (int v[], int N) que retira os numeros negativos de um vector com N inteiros. \nA funcao deve retornar o numero de elementos que nao foram retirados.",
+      "Resposta": "int retiraNeg (int v[], int N){\n    int r =N,l=0,e=0;\n    while (l<N)\n    {\n        if (v[l]<0)\n        {\n            r--;\n            l++;\n        }\n        else\n        {\n            v[e]=v[l];\n            e++;\n            l++;\n        }\n    }\n    return r;\n}",
+      "Exemplo": {
+        "Input": "retiraNeg([1,-1,2,-2])",
+        "Output": "2 ([1,2])"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int menosFreq (int v[], int N) que recebe um vector v com N elementos ordenado por ordem crescente e retorna o menos frequente dos elementos do vector. \nSe houver mais do que um elemento nessas condicoes deve retornar o que comeca por aparecer no indice mais baixo.",
+      "Resposta": "int menosFreq (int v[], int N){\n    int lowNumb=v[0],r=16384,count=1,i,last=v[0];\n    for (i = 1; i <= N; ++i)\n    {\n        if (last ==v[i])\n            count++;\n        else if (count < r)\n        {\n            lowNumb=v[i-1];\n            r=count;\n            last = v[i];\n            count=1;\n        }\n        else if (last !=v[i])\n        {\n            last = v[i];\n            count=1;\n        }\n    }\n    return lowNumb;\n}",
+      "Exemplo": {
+        "Input": "menosFreq([2,3,1,3,5,2,5])",
+        "Output": "1"
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int maisFreq (int v[], int N) que recebe um vector v com N elementos ordenado por ordem crescente e retorna o mais frequente dos elementos do vector.\nSe houver mais do que um elemento nessas condicoes deve retornar o que comeca por aparecer no indice mais baixo.",
+      "Resposta": "int maisFreq (int v[], int N){\n    int highNumb=v[0],r=0,count=1,i,last=v[0];\n    for (i = 1; i <= N; ++i)\n    {\n        if (last ==v[i])\n            count++;\n        else if (count > r)\n        {\n            highNumb=v[i-1];\n            r=count;\n            last = v[i];\n            count=1;\n        }\n        else if (last !=v[i])\n        {\n            last = v[i];\n            count=1;\n        }\n    }\n    return highNumb;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int maxCresc (int v[], int N) que calcula o comprimento da maior sequencia crescente de elementos consecutivos num vector v com N elementos. \nPor exemplo, se o vector contiver 10 elementos pela seguinte ordem: 1, 2, 3, 2, 1, 4, 10, 12, 5, 4\na funcao devera retornar 4, correspondendo ao tamanho da sequencia 1, 4, 10, 12.",
+      "Resposta": "int maxCresc (int v[], int N) {\n    int i,big=1,r = 1,last=v[0];\n    for (i = 1; i <= N; ++i)\n    {\n        if (v[i]>=last)\n        {\n            r++;\n            last =v[i];\n        }\n        else if (r>big)\n        {\n            big=r;\n            r=1;\n            last=v[i];\n        }\n        else\n        {\n            r=1;\n            last = v[i];\n        }\n    }\n    return big;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int elimRep (int v[], int n) que recebe um vector v com n inteiros e elimina as repeticoes. A funcao devera retornar o numero de elementos do vector resultante.\nPor exemplo, se o vector v contiver nas suas primeiras 10 posicoes os numeros\n{1, 2, 3, 2, 1, 4, 2, 4, 5, 4}\na invocacao elimRep (v,10) devera retornar 5 e colocar nas primeiras 5 posicoes do vector os elementos {1,2,3,4,5}.",
+      "Resposta": "int elimRep (int v[], int N) {\n    int i,l,e;\n    for (i = 0; i < N; ++i)\n    {\n        e=i+1;\n        l=i+1;\n        while (l<N)\n        {\n            if (v[i] ==v[l])\n                l++;\n            else\n            {\n                v[e]=v[l];\n                e++;\n                l++;\n            }\n        }\n        N=N-(l-e);\n    }\n    return N;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int elimRepOrd (int v[], int n) que recebe um vector v com n inteiros ordenado por ordem crescente e elimina as repeticoes. \nA funcao devera retornar o numero de elementos do vector resultante.",
+      "Resposta": "int elimRepOrd (int v[], int N) {\n    int r=N,l=0,e=0;\n    while (l <= N-1)\n    {\n        if (v[l]==v[l+1] && r !=1)\n        {\n            r--;\n            l++;\n        }\n        else\n        {\n            v[e]=v[l];\n            l++;\n            e++;\n        }\n    }\n    return r;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int comunsOrd (int a[], int na, int b[], int nb) que calcula quantos elementos os vectores a (com na elementos) e b (com nb elementos) tem em comum. \nAssuma que os vectores a e b estao ordenados por ordem crescente.",
+      "Resposta": "int comunsOrd (int a[], int na, int b[], int nb){\n    int i,j,comuns;\n    i=j=comuns=0;\n    while(i<na && j<nb){\n        if (a[i] == b[j])\n        {\n            ++j;\n            ++i;\n            ++comuns;\n        }\n        else if (a[i]>b[j]) ++j;\n            else ++i;\n    }\n    return comuns;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int comuns (int a[], int na, int b[], int nb) que calcula quantos elementos os vectores a (com na elementos) e b (com nb elementos) tem em comum. \nAssuma que os vectores a e b nao estao ordenados e defina a funcao sem alterar os vectores.",
+      "Resposta": "int comuns (int a[], int na, int b[], int nb){\n    int r=0,i1,i2,leave;\n    for (i1=0;i1<na;i1++)\n    {\n        leave=0;\n        for(i2=0;i2<nb && leave == 0;i2++)\n        {\n            if (a[i1]==b[i2])\n            {\n                r++;\n                leave =1;\n            }\n        }\n    }\n    return r;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int minInd (int v[], int n) que, dado um vector v com n inteiros, retorna o indice do menor elemento do vector.",
+      "Resposta": "int minInd (int v[], int n) {\n   int r=0,min=v[0],i;\n   for (i=1;i<n;i++)\n   {\n        if (v[i]<min)\n        {\n            min = v[i];\n            r=i;\n        }\n   }\n   return r;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void somasAc (int v[], int Ac [], int N) que preenche o vector Ac com as somas acumuladas do vector v. \nPor exemplo, na posicao Ac[3] deve ser calculado como v[0]+v[1]+v[2]+v[3].",
+      "Resposta": "void somasAc (int v[], int Ac [], int N){\n   int i,soma=0;\n   for (i = 0; i < N; ++i)\n   {\n        soma = soma + v[i];\n        Ac[i]= soma;\n   }\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao int triSup (int N, float m [N][N]) que testa se uma matriz quadrada e triangular superior, i.e., que todos os elementos abaixo da diagonal sao zeros.",
+      "Resposta": "int triSup (int N, float m [N][N]) {\n    int l,c,zeros=1,sup=1;\n    for (l = 1; l < N && sup==1 ; ++l)\n    {\n        for (c = 0; c < N && c < zeros && sup==1; ++c)\n        {\n            if (m[l][c]!=0)\n                sup =0;\n        }\n        zeros++;\n    }\n    return sup;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void transposta (int N, float m [N][N]) que transforma uma matriz na sua transposta.",
+      "Resposta": "void transposta (int N, float m [N][N]) {\n    int l,c,colunas=1;\n    float store;\n    for (l = 0; l < N; ++l)\n    {\n        for (c = 0; c < N && c<colunas; ++c)\n        {\n            store = m[l][c];\n            m[l][c] = m[c][l];\n            m[c][l]=store;\n        }\n        colunas++;\n    }\n    return;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Defina uma funcao void addTo (int N, int M, int a [N][M], int b[N][M]) que adiciona a segunda matriz a primeira.",
+      "Resposta": "void addTo(int N, int M, int a [N][M], int b[N][M]) {\n    int l,c;\n    for (l = 0; l < N; ++l)\n    {\n        for (c = 0; c < M; ++c)\n        {\n            a[l][c]=a[l][c]+b[l][c];\n        }\n    }\n    return;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Escreva em C uma funcao void sumDiag (int N, int m [N][N]) que recebe como argumento uma matriz quadrada e substitui cada elemento da diagonal pelo somatorio de todos\nos outros elementos dessa linha. \nO exemplo abaixo mostra o efeito desta funcao numa matriz 4x4.",
+      "Resposta": "void sumDiag(int N, int m [N][N]){\n    int l,c,soma=0;\n    for (l = 0; l < N; ++l)\n    {\n        for (c = 0; c < N; ++c)\n        {\n            soma=soma + m[l][c];\n        }\n        m[l][l]=soma -m[l][l];\n        soma=0;\n    }\n    return;\n}",
+      "Exemplo": {
+        "Input": "1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16",
+        "Output": "9 2 3 4\n5 20 7 8\n9 10 31 12\n13 14 15 42"
+      }
+    },
+    {
+      "Pergunta": "Escreva um programa que liste no ecran as letras do alfabeto (maiusculas e minusculas) e o respectivo codigo ASCII. \nUse para isso a funcao printf, tanto para imprimir os carateres como os seus codigos (inteiros).",
+      "Resposta": "void printchars ()\n{\n    int letra =65;\n    int i;\n    for (i=0;i<26;i++,letra++)\n    {\n        printf (\"%c %d \\n%c %d\\n\",letra,letra,letra+32,letra+32);\n    }\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Uma forma de representar conjuntos de indices consiste em usar um array de inteiros contendo 1 ou 0 consoante esse indice pertenca ou nao ao conjunto. \nAssim o conjunto {1, 4, 7} seria representado por um array em que as primeiras 8 posicoes conteriam {0,1,0,0,1,0,0,1}.\nApresente uma definicao da funcao int unionSet (int N, int v1[N], int v2[N], int r[N]) que coloca no array r o resultado da uniao dos conjuntos v1 e v2.",
+      "Resposta": "int unionSet (int N, int v1[N], int v2[N], int r[N]){\n       int c=0,i;\n       for (i=0;i<N;i++)\n       {\n           if (v1[i]==1 || v2[i]==1)\n           {\n                r[c]=1;\n                c++;\n           }\n           else\n           {\n               r[c]=0;\n                c++;\n           }\n       }\n       return c;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Uma forma de representar conjuntos de indices consiste em usar um array de inteiros contendo 1 ou 0 consoante esse indice pertenca ou nao ao conjunto. Assim o conjunto {1, 4, 7} seria representado por um array em que as primeiras 8 posicoes conteriam {0,1,0,0,1,0,0,1}.\nApresente uma definicao da funcao int intersectSet (int N, int v1[N], int v2[N], int r[N]) que coloca no array r o resultado da interseccao dos conjuntos v1 e v2.",
+      "Resposta": "int intersectSet (int N, int v1[N], int v2[N], int r[N]){\n       int c=0,i;\n       for (i=0;i<N;i++)\n       {\n           if (v1[i]==1 && v2[i]==1)\n           {\n                r[c]=1;\n                c++;\n           }\n           else\n           {\n               r[c]=0;\n                c++;\n           }\n       }\n       return c;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Uma forma de representar multi-conjuntos de indices consiste em usar um array de inteiros contendo em cada posicao o numero de ocorrencias desse indice. \nAssim o multi-conjunto {1, 1, 4, 7, 7, 7} seria representado por um array em que as primeiras 8 posicoes conteriam\n{0,2,0,0,1,0,0,3}.\nApresente uma definicao da funcao int intersectMSet (int N, int v1[N], int v2[N], int r[N]) que coloca no array r o resultado da interseccao dos multi-conjuntos v1 e v2.",
+      "Resposta": "int intersectMSet (int N, int v1[N], int v2[N], int r[N]){\n   int c=0,i;\n   for (i=0;i<N;i++)\n   {\n       if (v1[i]==v2[i])\n       {\n            r[c]=v1[i];\n            c++;\n       }\n       else if (v1[i]<v2[i])\n       {\n            r[c]=v1[i];\n            c++;\n       }\n       else if (v1[i]>v2[i])\n       {\n           r[c]=v2[i];\n            c++;\n       }\n   }\n   return c;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Uma forma de representar multi-conjuntos de indices consiste em usar um array de inteiros contendo em cada posicao o numero de ocorrencias desse indice. \nAssim o multi-conjunto {1, 1, 4, 7, 7, 7} seria representado por um array em que as primeiras 8 posicoes conteriam {0,2,0,0,1,0,0,3}.\nApresente uma definicao da funcao int unionMSet (int N, int v1[N], int v2[N], int r[N]) que coloca no array r o resultado da uniao dos multi-conjuntos v1 e v2.",
+      "Resposta": "int unionMSet (int N, int v1[N], int v2[N], int r[N]){\n    int c=0;\n    for (i=0;i<N;i++)\n       {\n            r[c]= v1[i]+v2[i];\n            c++;\n       }\n    return c;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    },
+    {
+      "Pergunta": "Uma forma de representar multi-conjuntos de indices consiste em usar um array de inteiros contendo em cada posicao o numero de ocorrencias desse indice. \nAssim o multi-conjunto {1, 1, 4, 7, 7, 7} seria representado por um array em que as primeiras 8 posicoes conteriam {0,2,0,0,1,0,0,3}.\nApresente uma definicao da funcao int cardinalMSet (int N, int v[N]) que calcula a numero de elementos do multi-conjunto v.",
+      "Resposta": "int cardinalMSet (int N, int v[N]){\n  int c=0,i;\n  for (i=0;i<N;i++)\n  {\n      c=c+v[i];\n  }\n  return c;\n}",
+      "Exemplo": {
+        "Input": "",
+        "Output": ""
+      }
+    }
+  ],
+  "Total": 45
 }
