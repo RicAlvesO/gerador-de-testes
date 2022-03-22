@@ -53,14 +53,14 @@ def menu():
     while True:
         
         ## Menu Linguagens
-        options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[q] QUIT"]
+        options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[s] Sair"]
         terminal_menu = TerminalMenu(options, title="Linguagem")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index==3):
             quit()
         
         ## Menu Tamanho 
-        amount = ["[a] 1 Questao", "[b] Varias", "[q] QUIT"]
+        amount = ["[a] 1 Questao", "[b] Varias", "[s] Sair"]
         amount_menu = TerminalMenu(amount, title="Quantidade")
         amount_entry_index = amount_menu.show()
         if (amount_entry_index==2):

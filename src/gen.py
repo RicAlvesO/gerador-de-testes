@@ -5,17 +5,47 @@ from datetime import datetime
 from simple_term_menu import TerminalMenu
 from fpdf import FPDF
 
+class PDF(FPDF):
+    now = datetime.now()
+    current_time = now.strftime("%Y-%m-%d")
+    def header(self):
+        if self.page_no()==1:
+            self.set_y(45)
+            self.set_font('Times', 'B', 13)
+            self.cell(190, 15, 'Numero:_________ Nome:__________________________________________ Data:'+self.current_time, 1, 0, 'C')
+            self.ln()
+            self.set_font('Times', size=15)
+            self.multi_cell(190,10,'\nNota:\n Os testes gerados nao apresentam qualquer formato oficial.\n'
+                         +'As perguntas são geradas com base nos ficheiros JSON da pasta .\'data\'*.json e podem estar sujeitos a erros.\n'
+                         +'Os ficheiros de solução nao passam de sugestoes de resolucao dos problemas propostos.\n'
+                         +'Sugere-se para testar as respostas um exemplo no final de cada pergunta.',0,0,'L')
+            self.ln()
+            self.set_y(-50)
+            self.multi_cell(190, 10, 'Para mais informações sobre este projeto pode visitar o repositório em:\nhttps://github.com/RicAlvesO/Generador-de-Testes',1,0,'C')
+    def footer(self):
+        if self.page_no()>1:
+            self.set_font('Times','I', 8)
+            self.set_y(-15)
+            self.cell(0, 10, self.current_time, 0, 0, 'L')
+            self.ln()
+            self.set_y(-15)
+            self.cell(0, 10, 'By Ricardo O.', 0, 0, 'C')
+            self.ln()
+            self.set_y(-15)
+            self.cell(0, 10, 'Page %s' % ((self.page_no())-1), 0, 0, 'R')
+
 def wait():
     input("\nPressione Enter para continuar...\n")
 
 def gera_test(questoes, title, current_time):
     """Gera um pdf para o teste com as perguntas e titulo fornecido."""
-    pdf = FPDF()   
+    pdf = PDF()   
 
     #Capa
     pdf.add_page()
+    pdf.set_y(15)
     pdf.set_font("Times", size = 30)
-    pdf.cell(0, 200, title, 0, 0, 'C')
+    pdf.cell(190, 30, title, 1, 0, 'C')
 
     #Paginas de Pergunta
     pdf.set_font("Times", size = 15)
@@ -31,12 +61,13 @@ def gera_test(questoes, title, current_time):
 
 def gera_res(resps, title, current_time):
     """Gera um pdf para a resolucao com as respostas e titulo fornecido."""
-    pdf = FPDF()   
+    pdf = PDF()   
 
     #Capa
     pdf.add_page()
-    pdf.set_font("Times", size = 30)
-    pdf.cell(0, 200, (title+" (Resolucao)"), 0, 0, 'C')
+    pdf.set_y(15)
+    pdf.set_font("Times", size=20)
+    pdf.cell(190, 30, (title+" (Resolucao)"), 1, 0, 'C')
 
     #Paginas com Resolucao de Exercicios
     pdf.set_font("Times", size = 10)
@@ -82,7 +113,7 @@ def get_q(file, amount, title):
 def test_menu():
     """Menu Criação de Testes"""
     #Menu Linguagens
-    options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[q] Sair"]
+    options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[s] Sair"]
     terminal_menu = TerminalMenu(options, title="Linguagem")
     menu_entry_index = terminal_menu.show()
     if (menu_entry_index==3):
@@ -117,7 +148,7 @@ def info():
 def menu():
     """Menu Principal"""
     while True:
-        options = ["[n] Novo Teste", "[a] Adicionar Perguntas", "[i] Informacoes", "[q] Sair"]
+        options = ["[n] Novo Teste", "[a] Adicionar Perguntas", "[i] Informacoes", "[s] Sair"]
         terminal_menu = TerminalMenu(options, title="Menu")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index == 0):
