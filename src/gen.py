@@ -6,35 +6,53 @@ from simple_term_menu import TerminalMenu
 from fpdf import FPDF
 
 class PDF(FPDF):
+    """Classe relativa ao tipo PDF"""
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d")
+
+    # Definição da capa dos pdfs
     def header(self):
         if self.page_no()==1:
+
+            # Seccao de informacao do aluno
             self.set_y(45)
             self.set_font('Times', 'B', 13)
             self.cell(190, 15, 'Numero:_________ Nome:__________________________________________ Data:'+self.current_time, 1, 0, 'C')
             self.ln()
+            
+            # Nota Geral
             self.set_font('Times', size=15)
             self.multi_cell(190,10,'\nNota:\n Os testes gerados nao apresentam qualquer formato oficial.\n'
                          +'As perguntas são geradas com base nos ficheiros JSON da pasta .\'data\'*.json e podem estar sujeitos a erros.\n'
                          +'Os ficheiros de solução nao passam de sugestoes de resolucao dos problemas propostos.\n'
                          +'Sugere-se para testar as respostas um exemplo no final de cada pergunta.',0,0,'L')
             self.ln()
+
+            # Info sobre o repo
             self.set_y(-50)
             self.multi_cell(190, 10, 'Para mais informações sobre este projeto pode visitar o repositório em:\nhttps://github.com/RicAlvesO/Generador-de-Testes',1,0,'C')
+    
+    # definicao dos footers dos pdfs
     def footer(self):
         if self.page_no()>1:
             self.set_font('Times','I', 8)
+
+            # Data
             self.set_y(-15)
             self.cell(0, 10, self.current_time, 0, 0, 'L')
             self.ln()
+
+            # Autor do Projeto
             self.set_y(-15)
             self.cell(0, 10, 'By Ricardo O.', 0, 0, 'C')
             self.ln()
+
+            # Pagina
             self.set_y(-15)
             self.cell(0, 10, 'Page %s' % ((self.page_no())-1), 0, 0, 'R')
 
 def wait():
+    """Funcao de Stall"""
     input("\nPressione Enter para continuar...\n")
 
 def gera_test(questoes, title, current_time):
@@ -119,7 +137,6 @@ def test_menu():
     if (menu_entry_index==3):
         quit()
     
-
     #Menu Tamanho
     while True:
       try:
@@ -137,6 +154,7 @@ def test_menu():
     get_q(data[menu_entry_index], amount, title)
 
 def info():
+    """Pagina de informacao sobre o projeto"""
     print('Perguntas disponiveis atualmente:\n'
         +str(json.load(open("data/c.json", "r"))["Total"])+' Questoes de C\n'
         +str(json.load(open("data/haskell.json", "r"))["Total"])+' Questoes de Haskell\n'
