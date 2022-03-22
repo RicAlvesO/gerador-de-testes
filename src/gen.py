@@ -1,10 +1,14 @@
 import json
 import random
+import adder
 from datetime import datetime
 from simple_term_menu import TerminalMenu
 from fpdf import FPDF
 
-def gera_test(questoes, title):
+def wait():
+    input("\nPressione Enter para continuar...\n")
+
+def gera_test(questoes, title, current_time):
     """Gera um pdf para o teste com as perguntas e titulo fornecido."""
     pdf = FPDF()   
 
@@ -21,11 +25,11 @@ def gera_test(questoes, title):
         pdf.multi_cell(190, 10, '\tResposta:', 0, 'L')
 
     #Criação de Documento
-    now = datetime.now()
-    current_time = now.strftime("%Y%m%d_%H%M%S")
-    pdf.output(''.join(("output/testes/teste_",current_time,".pdf"))) 
+    nome = ''.join(("output/testes/teste_", current_time, ".pdf"))
+    pdf.output(nome) 
+    print('Teste gerado com sucesso em:\n'+nome)
 
-def gera_res(resps, title):
+def gera_res(resps, title, current_time):
     """Gera um pdf para a resolucao com as respostas e titulo fornecido."""
     pdf = FPDF()   
 
@@ -41,9 +45,9 @@ def gera_res(resps, title):
         pdf.multi_cell(190, 5, x, 1, 'L')
 
     #Criacão do Documento
-    now = datetime.now()
-    current_time = now.strftime("%Y%m%d_%H%M%S")
-    pdf.output(''.join(("output/resolucoes/resolucao_teste_",current_time,".pdf"))) 
+    nome=''.join(("output/resolucoes/resolucao_teste_",current_time,".pdf"))
+    pdf.output(nome) 
+    print('Sugestao de resolucao de teste gerado com sucesso em:\n'+nome)
 
 def get_q(file, amount, title):
     """Gera um com n perguntas e respostas aleatórias."""
@@ -54,6 +58,7 @@ def get_q(file, amount, title):
     
     if data["Total"]<amount:
         print('!QUESTOES INSUFICIENTES!')
+        wait()
         return
 
     #Escolha aleatória de n perguntas
@@ -66,35 +71,67 @@ def get_q(file, amount, title):
         resp.append(' '.join(("Resposta ",str(i),":\n",((data["Questoes"][ind])["Resposta"]))))
         i+=1
 
+    now = datetime.now()
+    current_time = now.strftime("%Y%m%d_%H%M%S")
+
     #Criação dos PDFS
-    gera_test(quest, title)
-    gera_res(resp, title)
+    gera_test(quest, title, current_time)
+    gera_res(resp, title, current_time)
+    wait()
+
+def test_menu():
+    """Menu Criação de Testes"""
+    #Menu Linguagens
+    options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[q] Sair"]
+    terminal_menu = TerminalMenu(options, title="Linguagem")
+    menu_entry_index = terminal_menu.show()
+    if (menu_entry_index==3):
+        quit()
+    
+
+    #Menu Tamanho
+    while True:
+      try:
+        amount = int(input("Numero desejado de perguntas: "))
+        break
+      except ValueError:
+          print("Por favor introduza um número válido...")
+          continue
+    if (amount<=0):
+        quit()
+    
+    #Criação do Teste
+    title = ' '.join(("Teste de",(options[menu_entry_index][4:]),":",str(amount),"perguntas"))
+    data = ["data/haskell.json","data/c.json","data/java.json"]
+    get_q(data[menu_entry_index], amount, title)
+
+def info():
+    print('Perguntas disponiveis atualmente:\n'
+        +str(json.load(open("data/c.json", "r"))["Total"])+' Questoes de C\n'
+        +str(json.load(open("data/haskell.json", "r"))["Total"])+' Questoes de Haskell\n'
+        +str(json.load(open("data/java.json", "r"))["Total"])+' Questoes de Java\n\n'
+        +'Este projeto foi desenvolvido por:\n-> Ricardo Oliveira (https://github.com/RicAlvesO)\n'
+        +'O repositorio do projeto pode ser visitado em:\nhttps://github.com/RicAlvesO/Generador-de-Testes')
+    wait()
 
 def menu():
     """Menu Principal"""
     while True:
-        
-        #Menu Linguagens
-        options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[q] QUIT"]
-        terminal_menu = TerminalMenu(options, title="Linguagem")
+        options = ["[n] Novo Teste", "[a] Adicionar Perguntas", "[i] Informacoes", "[q] Sair"]
+        terminal_menu = TerminalMenu(options, title="Menu")
         menu_entry_index = terminal_menu.show()
-        if (menu_entry_index==3):
+        if (menu_entry_index == 0):
+            test_menu()
+        elif (menu_entry_index == 1):
+            adder.menu()
+        elif (menu_entry_index == 2):
+            info()
+        elif (menu_entry_index == 3):
             quit()
-        
-        #Menu Tamanho 
-        amount = ["[a] 2 Questoes", "[b] 4 Questoes", "[c] 6 Questoes", "[d] 8 Questoes", "[e] 10 Questoes", "[q] QUIT"]
-        amount_menu = TerminalMenu(amount, title="Quantidade")
-        amount_entry_index = amount_menu.show()
-        if (amount_entry_index==5):
-            quit()
-        
-        #Criação do Teste
-        title = ' '.join(("Teste de",(options[menu_entry_index][4:]),":",str((amount_entry_index+1)*2),"perguntas"))
-        data = ["data/haskell.json","data/c.json","data/java.json"]
-        get_q(data[menu_entry_index], (amount_entry_index+1)*2, title)
 
         #Clear screen
         print('\033c')  
+
 
 def main():
     """Função de inicio"""
