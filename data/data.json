@@ -1,0 +1,22 @@
+{
+    "Languages":[
+        {
+            "Name":"C",
+            "Alias":"c",
+            "Path":"data/c.json",
+            "Total":0
+        },
+        {
+            "Name":"Haskell",
+            "Alias":"h",
+            "Path":"data/haskell.json",
+            "Total": 0
+        },
+        {
+            "Name":"Java",
+            "Alias":"j",
+            "Path":"data/java.json",
+            "Total": 0
+        }
+    ]
+}
