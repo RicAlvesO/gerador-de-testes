@@ -54,15 +54,11 @@ Assim sendo para adicionar novas perguntas e/ou linguagens ao programa deve corr
 
 Pode também aceder a estas funcionalidades através do menu principal do programa.
 
-No futuro será desponibilizado um set de perguntas e respostas para, pelo menos, as seguintes linguagens:
+No futuro estará disponivel um link para um dataset de perguntas e respostas para as seguintes linguagens:
 
 - C
 - Haskell
 - Java
-
-Pode contribuir com perguntas e exemplos em:
-
-`www.link-de-contribuição-exemplo.com`
 
 ## Licença
 
