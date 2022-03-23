@@ -12,7 +12,7 @@ def get_multiline():
             break
     return '\n'.join(lines)
 
-def update_json(file,amount):
+def update_json(file,amount,id):
     """Função responsável por atualizar ficheiros JSON com novas perguntas"""
     
     ## Parsing do JSON
@@ -48,12 +48,29 @@ def update_json(file,amount):
     jsonFile.write(json.dumps(data, indent=2))
     jsonFile.close()
 
+    ## Update de informação global 
+    with open("data/data.json", "r") as read_file:
+        gdata = json.load(read_file)
+    ((gdata["Languages"])[id])["Total"]=data["Total"];
+    jsongdata = open("data/data.json", "w+")
+    jsongdata.write(json.dumps(gdata, indent=2))
+    jsongdata.close()
+
 def menu():
     """Menu Principal"""
+
+    ## Parsing de dados locais
+    with open("data/data.json", "r") as read_file:
+        data = json.load(read_file)
+    options = []
+    flist = []
+    for l in data["Languages"]:
+        options.append("["+l["Alias"]+"] "+l["Name"])
+        flist.append(l["Path"])
+
     while True:
         
         ## Menu Linguagens
-        options = ["[h] HASKELL", "[c] C", "[j] JAVA", "[s] Sair"]
         terminal_menu = TerminalMenu(options, title="Linguagem")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index==3):
@@ -67,8 +84,7 @@ def menu():
             quit()
        
         ## Update Used JSON
-        files = ["data/haskell.json","data/c.json","data/java.json"]
-        update_json(files[menu_entry_index], amount_entry_index)
+        update_json(flist[menu_entry_index], amount_entry_index, menu_entry_index)
 
         ## Clear screen
         print('\033c')  
