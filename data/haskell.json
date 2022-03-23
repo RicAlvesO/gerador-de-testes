@@ -6,7 +6,8 @@
       "Exemplo": {
         "Input": "Isto e um exemplo de input.",
         "Output": "Isto e um exemplo de output."
-      }
+      },
+      "Dificuldade": 1
     }
   ],
   "Total": 1

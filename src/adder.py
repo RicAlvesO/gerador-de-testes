@@ -1,16 +1,6 @@
 import json
+import utils
 from simple_term_menu import TerminalMenu
-
-def get_multiline():
-    """Get multi line string input"""
-    lines = []
-    while True:
-        line = input()
-        if line:
-            lines.append(line)
-        else:
-            break
-    return '\n'.join(lines)
 
 def update_json(file,amount,id):
     """Função responsável por atualizar ficheiros JSON com novas perguntas"""
@@ -32,14 +22,18 @@ def update_json(file,amount,id):
     while amount:
         print('\033c')  
         print('Pergunta: ')
-        q=get_multiline()
+        q=utils.get_multiline()
         print('Resposta: ')
-        a=get_multiline()
+        a=utils.get_multiline()
         print('Exemplo\nInput: ')
-        i=get_multiline()
+        i=utils.get_multiline()
         print('Output: ')
-        o=get_multiline()
-        data["Questoes"].append({"Pergunta":q,"Resposta":a,"Exemplo":{"Input":i,"Output":o}})
+        o=utils.get_multiline()
+        d = utils.get_int('Nivel de Dificuldade (1~10): ')
+        while d<0 or d>11:
+            print('Por favor introduza um valor entre 1 e 10!(inclusive)')
+            d = utils.get_int('Nivel de Dificuldade (1~10): ')
+        data["Questoes"].append({"Pergunta":q,"Resposta":a,"Exemplo":{"Input":i,"Output":o},"Dificuldade":d})
         data["Total"]+=1
         amount-=1
 

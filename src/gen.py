@@ -2,12 +2,9 @@ import json
 import random
 import adder
 import gpdf
+import utils
 from datetime import datetime
 from simple_term_menu import TerminalMenu
-
-def wait():
-    """Funcao de Stall"""
-    input("\nPressione Enter para continuar...\n")
 
 def get_q(file, amount, title):
     """Gera um com n perguntas e respostas aleatórias."""
@@ -18,12 +15,22 @@ def get_q(file, amount, title):
 
     ## Escolha aleatória de n perguntas
     indexs = random.sample(range(0, data["Total"]), amount)
-    i=1;
+    i=1
     quest=[]
     resp=[]
+
+    ## Distribuição de pontos pelo teste
+    total=0.0
     for ind in indexs:
-        quest.append(' '.join((str(i),") ",((data["Questoes"][ind])["Pergunta"]),'\n\nExemplo\nInput:',(((data["Questoes"][ind])["Exemplo"])["Input"]),'\nOutput:',(((data["Questoes"][ind])["Exemplo"])["Output"]))))
-        resp.append(' '.join(("Resposta ",str(i),":\n",((data["Questoes"][ind])["Resposta"]))))
+        total += (data["Questoes"][ind])["Dificuldade"]
+    total=float(20/total)
+
+    for ind in indexs:
+        quest.append(''.join(("Questão ", str(i), ":"," (%.1f" % ((data["Questoes"][ind])["Dificuldade"]*total),
+                     " Valores)\n",((data["Questoes"][ind])["Pergunta"]), 
+                     '\n\nExemplo\nInput: ', (((data["Questoes"][ind])["Exemplo"])["Input"]), 
+                     '\nOutput: ', (((data["Questoes"][ind])["Exemplo"])["Output"]))))
+        resp.append(''.join(("Resposta ",str(i),":\n",((data["Questoes"][ind])["Resposta"]))))
         i+=1
 
     now = datetime.now()
@@ -32,7 +39,7 @@ def get_q(file, amount, title):
     ## Criação dos PDFS
     gpdf.gera_test(quest, title, current_time)
     gpdf.gera_res(resp, title, current_time)
-    wait()
+    utils.wait()
 
 def test_menu():
     """Menu Criação de Testes"""
@@ -57,26 +64,19 @@ def test_menu():
     if (menu_entry_index==data["Total"]):
         return
     
-    ## Receber input para tamanho do teste
-    while True:
-      try:
-        amount = int(input("Numero desejado de perguntas: "))
-        break
-      except ValueError:
-          print("Por favor introduza um número válido...")
-          continue
-    
+    amount = utils.get_int("Numero desejado de perguntas: ")
+
     ## Verificacoes de Tamanho
-    if (amount <= 0): # Número de questões não é positivo
+    while (amount <= 0): # Número de questões não é positivo
         print("Impossivel gerar teste com "+str(amount)+" questoes!!"
               +"\nExprimente colocar um número positivo e tente novamente.")
-        wait()
-        create = False
+        utils.wait()
+        amount = utils.get_int("Numero desejado de perguntas: ")
 
-    elif (amount>dbsize[menu_entry_index]): # Número de questões superior ao máximo
+    if (amount>dbsize[menu_entry_index]): # Número de questões superior ao máximo
         print("Questoes insuficientes para gerar teste!!!\nMaximo atual para esta linguagem: "
               +str(dbsize[menu_entry_index])+" questoes!\nExprimente adicionar mais questoes e tentar novamente.")
-        wait() 
+        utils.wait() 
         create=False
     
     ## Criação do Teste
@@ -94,7 +94,7 @@ def info():
         +'Este projeto foi desenvolvido por:\n-> Ricardo Oliveira (https://github.com/RicAlvesO)\n'
         +'O repositorio do projeto pode ser visitado em:\nhttps://github.com/RicAlvesO/Generador-de-Testes')
     
-    wait()
+    utils.wait()
 
 def menu():
     """Menu Principal"""
