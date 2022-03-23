@@ -4,19 +4,22 @@ Gerador de testes modelo para várias linguagens de programação.
 
 ## Tabela de Conteúdos
 
-- **[Linguages](#Linguages)**
-- **[Requisitos](#Requisitos)**
-- **[Como Utilisar](#Como-Utilisar)**
-- **[Como Pode Contribuir](#Como-Pode-Contribuir)**
+- **[Linguages](#linguages)**
+- **[Requisitos](#requisitos)**
+- **[Como Utilisar](#como-utilizar)**
+- **[Como Adicionar Conteúdo](#como-adicionar-conteúdo)**
+- **[Licença](#licença)**
 
 ## Linguagens
 
-Atualmente o programa suporta as seguintes linguagens:
-    - C
-    - Haskell
-    - Java
+Atualmente o programa inclui as seguintes linguagens:
+- C
+- Haskell
+- Java
 
-No entanto algumas destas podém ainda não conter um dataset dde perguntas suficientes para os testes.
+Estas servem apenas de exemplo para a funcionalidade do programa, sendo possivel adicionar novas conforme a necessidade.
+
+As perguntas presentes servem também de exemplo para o possivel funcionamento deste projeto. 
 
 `NOTA:O total de perguntas pode ser consultado no menu do programa!`
 
@@ -41,12 +44,28 @@ Após escolher os items desejados será gerada na pasta `output/testes` um novo 
 Para limpar os testes gerados anteriormente e as suas respostas pode executar o comando:
 - `make clean`
 
-## Como Pode Contribuir
+## Como Adicionar Conteúdo
 
-Atualmente a quantidade das perguntas, bem como a sua complexidade deixa a desejar, visto isso, para além da implementação de novas funcionalidades, agradeçe-se a nova contribuição de perguntas, respostas e exemplos.
+Atualmente as perguntas e linguagens não passam de exemplos para uma possivel utilização do programa.
 
-De modo a adicionar novas perguntas deve correr o comando:
+Assim sendo para adicionar novas perguntas e/ou linguagens ao programa deve correr o comando:
 
 - `make adder`
 
-`NOTA: Atualmente as perguntas e respostas são armazenadas localmente em ficheiros .JSON`
+Pode também aceder a estas funcionalidades através do menu principal do programa.
+
+No futuro será desponibilizado um set de perguntas e respostas para, pelo menos, as seguintes linguagens:
+
+- C
+- Haskell
+- Java
+
+Pode contribuir com perguntas e exemplos em:
+
+`www.link-de-contribuição-exemplo.com`
+
+## Licença
+
+Copyright (c) 2022, Ricardo O.
+
+Este projeto está licenciado sob a Licença MIT - veja o ficheiro LICENSE para detalhes.
