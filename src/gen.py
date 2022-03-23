@@ -145,7 +145,7 @@ def test_menu():
     terminal_menu = TerminalMenu(options, title="Linguagem")
     menu_entry_index = terminal_menu.show()
     if (menu_entry_index==data["Total"]):
-        quit()
+        return
     
     ## Menu Tamanho
     while True:

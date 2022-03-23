@@ -2,3 +2,4 @@
 *.txt
 *.zip
 *.json
+__pycache__/

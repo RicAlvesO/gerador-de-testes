@@ -4,20 +4,20 @@
       "Name": "C",
       "Alias": "c",
       "Path": "data/c.json",
-      "Total": 0
+      "Total": 1
     },
     {
       "Name": "Haskell",
       "Alias": "h",
       "Path": "data/haskell.json",
-      "Total": 0
+      "Total": 1
     },
     {
       "Name": "Java",
       "Alias": "j",
       "Path": "data/java.json",
-      "Total": 0
+      "Total": 1
     }
   ],
-  "Total":3
+  "Total": 3
 }

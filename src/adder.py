@@ -75,14 +75,14 @@ def menu_p():
         terminal_menu = TerminalMenu(options, title="Linguagem")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index==data["Total"]):
-            quit()
+            return
         
         ## Menu Tamanho 
         amount = ["[a] 1 Questao", "[b] Varias", "[s] Sair"]
         amount_menu = TerminalMenu(amount, title="Quantidade")
         amount_entry_index = amount_menu.show()
         if (amount_entry_index==2):
-            quit()
+            return
        
         ## Update Used JSON
         update_json(flist[menu_entry_index], amount_entry_index, menu_entry_index)
