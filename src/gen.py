@@ -1,6 +1,7 @@
 import json
 import random
 from tokenize import Name
+from venv import create
 import adder
 from datetime import datetime
 from simple_term_menu import TerminalMenu
@@ -127,6 +128,7 @@ def get_q(file, amount, title):
 def test_menu():
     """Menu Criação de Testes"""
 
+    create=True
     ## Parsing dos dados guardados
     with open("data/data.json", "r") as read_file:
         data = json.load(read_file)
@@ -137,11 +139,12 @@ def test_menu():
         options.append("["+l["Alias"]+"] "+l["Name"])
         flist.append(l["Path"])
         dbsize.append(l["Total"])
+    options.append("[s] Sair")
 
     ## Menu Linguagens
     terminal_menu = TerminalMenu(options, title="Linguagem")
     menu_entry_index = terminal_menu.show()
-    if (menu_entry_index==3):
+    if (menu_entry_index==data["Total"]):
         quit()
     
     ## Menu Tamanho
@@ -160,10 +163,12 @@ def test_menu():
         print("Questoes insuficientes para gerar teste!!!\nMaximo atual para esta linguagem: "
               +str(dbsize[menu_entry_index])+" questoes!\nExprimente adicionar mais questoes e tentar novamente.")
         wait() 
+        create=False
     
     ## Criação do Teste
-    title = ' '.join(("Teste de",(options[menu_entry_index][4:]),":",str(amount),"perguntas"))
-    get_q(flist[menu_entry_index], amount, title)
+    if create:
+        title = ' '.join(("Teste de",(options[menu_entry_index][4:]),":",str(amount),"perguntas"))
+        get_q(flist[menu_entry_index], amount, title)
 
 def info():
     """Pagina de informacao sobre o projeto"""
@@ -178,16 +183,18 @@ def info():
 def menu():
     """Menu Principal"""
     while True:
-        options = ["[n] Novo Teste", "[a] Adicionar Perguntas", "[i] Informacoes", "[s] Sair"]
+        options = ["[n] Novo Teste", "[p] Adicionar Perguntas", "[l] Adicionar Linguagens", "[i] Informacoes", "[s] Sair"]
         terminal_menu = TerminalMenu(options, title="Menu")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index == 0):
             test_menu()
         elif (menu_entry_index == 1):
-            adder.menu()
+            adder.menu_p()
         elif (menu_entry_index == 2):
-            info()
+            adder.menu_l()
         elif (menu_entry_index == 3):
+            info()
+        elif (menu_entry_index == 4):
             quit()
 
         ## Clear screen
