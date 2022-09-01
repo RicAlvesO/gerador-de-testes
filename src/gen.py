@@ -1,6 +1,5 @@
 import json
 import random
-import adder
 import gpdf
 import utils
 from datetime import datetime
@@ -42,7 +41,7 @@ def get_q(file, amount, title):
     utils.wait()
 
 def test_menu():
-    """Menu Criação de Testes"""
+    """Menu Criação de Testes por Linguagem"""
     create=True
 
     ## Parsing dos dados globais guardados no json 
@@ -51,17 +50,19 @@ def test_menu():
     options = []
     flist = []
     dbsize = []
+    total=0
 
     for l in data["Languages"]:
         options.append("["+l["Alias"]+"] "+l["Name"])
         flist.append(l["Path"])
         dbsize.append(l["Total"])
+        total=total+1
     options.append("[s] Sair")
 
     ## Menu Linguagens
     terminal_menu = TerminalMenu(options, title="Linguagem")
     menu_entry_index = terminal_menu.show()
-    if (menu_entry_index==data["Total"]):
+    if (menu_entry_index==total):
         return
     
     amount = utils.get_int("Numero desejado de perguntas: ")
@@ -84,14 +85,44 @@ def test_menu():
         title = ' '.join(("Teste de",(options[menu_entry_index][4:]),":",str(amount),"perguntas"))
         get_q(flist[menu_entry_index], amount, title)
 
+def preset_menu():
+    """Menu Criação de Testes por Linguagem"""
+    create = True
+
+    ## Parsing dos dados globais guardados no json
+    with open("data/data.json", "r") as read_file:
+        data = json.load(read_file)
+    options = []
+    flist = []
+    ttsize = []
+    total = 0
+
+    for l in data["Presets"]:
+        options.append("["+l["Alias"]+"] "+l["Name"])
+        flist.append(l["Path"])
+        ttsize.append(l["Amount"])
+        total = total+1
+    options.append("[s] Sair")
+
+    ## Menu Linguagens
+    terminal_menu = TerminalMenu(options, title="Preset")
+    menu_entry_index = terminal_menu.show()
+    if (menu_entry_index == total):
+        return
+
+    amount = ttsize[menu_entry_index]
+
+    ## Criação do Teste
+    if create:
+        title = ' '.join(
+            ("Teste de", (options[menu_entry_index][4:]), ":", str(amount), "perguntas"))
+        get_q(flist[menu_entry_index], amount, title)
+
+
 def info():
     """Pagina de informacao sobre o projeto"""
 
-    print('Perguntas disponiveis atualmente:\n'
-        +str(json.load(open("data/c.json", "r"))["Total"])+' Questoes de C\n'
-        +str(json.load(open("data/haskell.json", "r"))["Total"])+' Questoes de Haskell\n'
-        +str(json.load(open("data/java.json", "r"))["Total"])+' Questoes de Java\n\n'
-        +'Este projeto foi desenvolvido por:\n-> Ricardo Oliveira (https://github.com/RicAlvesO)\n'
+    print('Este projeto foi desenvolvido por:\n-> Ricardo Oliveira (https://github.com/RicAlvesO)\n'
         +'O repositorio do projeto pode ser visitado em:\nhttps://github.com/RicAlvesO/Generador-de-Testes')
     
     utils.wait()
@@ -100,23 +131,20 @@ def menu():
     """Menu Principal"""
 
     while True:
-        options = ["[n] Novo Teste", "[p] Adicionar Perguntas", "[l] Adicionar Linguagens", "[i] Informacoes", "[s] Sair"]
+        options = ["[n] Novo Teste", "[p] Teste por Preset", "[i] Informacoes", "[s] Sair"]
         terminal_menu = TerminalMenu(options, title="Menu")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index == 0):
             test_menu()                 # Criar Teste
         elif (menu_entry_index == 1):
-            adder.menu_p()              # Adicionar Pergunta
+            preset_menu()
         elif (menu_entry_index == 2):
-            adder.menu_l()              # Adicionar Linguagem
-        elif (menu_entry_index == 3):
             info()                      # Mostrar Informação
-        elif (menu_entry_index == 4):
+        elif (menu_entry_index == 3):
             quit()                      # Sair
 
         ## Clear screen
         print('\033c')  
-
 
 def main():
     """Função de inicio"""

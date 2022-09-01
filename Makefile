@@ -3,9 +3,6 @@ all: run
 run:
 	python3 src/gen.py
 
-adder:
-	python3 src/adder.py
-
 sync:
 	python3 src/sync.py
 

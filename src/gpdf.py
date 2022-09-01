@@ -20,7 +20,8 @@ class PDF(FPDF):
             ## Nota Geral
             self.set_font('Times', size=15)
             self.multi_cell(190, 10, '\nNota:\n Os testes gerados nao apresentam qualquer formato oficial.\n'
-                            + 'As perguntas são geradas com base nos ficheiros JSON da pasta \'.data/*.json\' e podem estar sujeitos a erros.\n'
+                            + 'As perguntas são geradas com base nos ficheiros JSON da pasta \'.data/**/*.json\' e podem estar sujeitos a erros.\n'
+                            + 'A versão mais atualizada dos mesmos pode ser obtida ao correr o comando \'make sync\'.\n'
                             + 'Os ficheiros de solução nao passam de sugestoes de resolucao dos problemas propostos.\n'
                             + 'Sugere-se para testar as respostas um exemplo no final de cada pergunta.', 0, 0, 'L')
             self.ln()
