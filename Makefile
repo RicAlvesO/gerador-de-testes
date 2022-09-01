@@ -1,16 +1,21 @@
 all: run
 
 run:
-	python src/gen.py
+	python3 src/gen.py
 
 adder:
-	python src/adder.py
+	python3 src/adder.py
 
-setup: src/requirements.txt
-	pip install -r src/requirements.txt
+sync:
+	python3 src/sync.py
+
+setup: requirements.txt
+	pip install -r requirements.txt
+	python3 src/sync.py
 
 clean:
 	@ rm -rf output/testes/*.pdf 
 	@ rm -rf output/resolucoes/*.pdf 
+	@ rm -rf src/__pycache__
 
 .phony: run clean setup

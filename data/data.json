@@ -1,23 +1,31 @@
 {
-  "Languages": [
-    {
-      "Name": "C",
-      "Alias": "c",
-      "Path": "data/c.json",
-      "Total": 2
-    },
-    {
-      "Name": "Haskell",
-      "Alias": "h",
-      "Path": "data/haskell.json",
-      "Total": 1
-    },
-    {
-      "Name": "Java",
-      "Alias": "j",
-      "Path": "data/java.json",
-      "Total": 1
-    }
-  ],
-  "Total": 3
+    "Languages": [
+        {
+            "Name": "C",
+            "Alias": "c",
+            "Path": "data/languages/c.json",
+            "Total": 1
+        },
+        {
+            "Name": "Haskell",
+            "Alias": "h",
+            "Path": "data/languages/haskell.json",
+            "Total": 1
+        },
+        {
+            "Name": "Java",
+            "Alias": "j",
+            "Path": "data/languages/java.json",
+            "Total": 1
+        }
+    ],
+    "Presets": [
+        {
+            "Name": "50Q Haskell",
+            "Alias": "h",
+            "Path": "data/presets/50q-haskell.json",
+            "Total": 50,
+            "Amount": 2
+        }
+    ]
 }
