@@ -7,7 +7,6 @@ Gerador de testes modelo para várias linguagens de programação.
 - **[Linguages](#linguages)**
 - **[Requisitos](#requisitos)**
 - **[Como Utilisar](#como-utilizar)**
-- **[Como Adicionar Conteúdo](#como-adicionar-conteúdo)**
 - **[Licença](#licença)**
 
 ## Linguagens
@@ -46,22 +45,6 @@ Assim, as cotaçãoes são relativas ao teste gerado e não tem um significado �
 
 Para limpar os testes gerados anteriormente e as suas respostas pode executar o comando:
 - `make clean`
-
-## Como Adicionar Conteúdo
-
-Atualmente as perguntas e linguagens não passam de exemplos para uma possivel utilização do programa.
-
-Assim sendo para adicionar novas perguntas e/ou linguagens ao programa deve correr o comando:
-
-- `make adder`
-
-Pode também aceder a estas funcionalidades através do menu principal do programa.
-
-No futuro estará disponivel um link para um dataset de perguntas e respostas para as seguintes linguagens:
-
-- C
-- Haskell
-- Java
 
 ## Licença
 

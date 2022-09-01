@@ -50,7 +50,6 @@ class PDF(FPDF):
             self.set_y(-15)
             self.cell(0, 10, 'Page %s' % ((self.page_no())-1), 0, 0, 'R')
 
-
 def gera_test(questoes, title, current_time):
     """Gera um pdf para o teste com as perguntas e titulo fornecido."""
     pdf = PDF()
@@ -72,7 +71,6 @@ def gera_test(questoes, title, current_time):
     nome = ''.join(("output/testes/teste_", current_time, ".pdf"))
     pdf.output(nome)
     print('Teste gerado com sucesso em:\n'+nome)
-
 
 def gera_res(resps, title, current_time):
     """Gera um pdf para a resolucao com as respostas e titulo fornecido."""

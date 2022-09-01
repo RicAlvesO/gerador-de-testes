@@ -1,6 +1,7 @@
 import json
 import random
 import gpdf
+import sync
 import utils
 from datetime import datetime
 from simple_term_menu import TerminalMenu
@@ -86,7 +87,7 @@ def test_menu():
         get_q(flist[menu_entry_index], amount, title)
 
 def preset_menu():
-    """Menu Criação de Testes por Linguagem"""
+    """Menu Criação de Testes por Preset"""
     create = True
 
     ## Parsing dos dados globais guardados no json
@@ -118,7 +119,6 @@ def preset_menu():
             ("Teste de", (options[menu_entry_index][4:]), ":", str(amount), "perguntas"))
         get_q(flist[menu_entry_index], amount, title)
 
-
 def info():
     """Pagina de informacao sobre o projeto"""
 
@@ -131,24 +131,23 @@ def menu():
     """Menu Principal"""
 
     while True:
-        options = ["[n] Novo Teste", "[p] Teste por Preset", "[i] Informacoes", "[s] Sair"]
+        print('\033c')
+        options = ["[1] Novo Teste", "[2] Teste por Preset", "[3] Atualizar Perguntas", "[4] Informacoes", "[0] Sair"]
         terminal_menu = TerminalMenu(options, title="Menu")
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index == 0):
             test_menu()                 # Criar Teste
         elif (menu_entry_index == 1):
-            preset_menu()
+            preset_menu()               # Criar Teste por Preset
         elif (menu_entry_index == 2):
-            info()                      # Mostrar Informação
+            sync.main()                      # Mostrar Informação
         elif (menu_entry_index == 3):
+            info()                      # Mostrar Informação
+        elif (menu_entry_index == 4):
             quit()                      # Sair
-
-        ## Clear screen
-        print('\033c')  
 
 def main():
     """Função de inicio"""
-    print('\033c')  
     menu()
 
 if __name__ == "__main__":
