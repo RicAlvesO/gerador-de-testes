@@ -4,23 +4,9 @@ Gerador de testes modelo para várias linguagens de programação.
 
 ## Tabela de Conteúdos
 
-- **[Linguages](#linguages)**
 - **[Requisitos](#requisitos)**
 - **[Como Utilisar](#como-utilizar)**
 - **[Licença](#licença)**
-
-## Linguagens
-
-Atualmente o programa inclui as seguintes linguagens:
-- C
-- Haskell
-- Java
-
-Estas servem apenas de exemplo para a funcionalidade do programa, sendo possivel adicionar novas conforme a necessidade.
-
-As perguntas presentes servem também de exemplo para o possivel funcionamento deste projeto. 
-
-`NOTA:O total de perguntas pode ser consultado no menu do programa!`
 
 ## Requisitos
 
