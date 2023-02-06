@@ -54,10 +54,11 @@ def test_menu():
     total=0
 
     for l in data["Languages"]:
-        options.append("["+l["Alias"]+"] "+l["Name"])
-        flist.append(l["Path"])
-        dbsize.append(l["Total"])
-        total=total+1
+        if l["Alias"]!="XXX":
+            options.append("["+l["Alias"]+"] "+l["Name"])
+            flist.append(l["Path"])
+            dbsize.append(l["Total"])
+            total=total+1
     options.append("[s] Sair")
 
     ## Menu Linguagens
@@ -99,10 +100,11 @@ def preset_menu():
     total = 0
 
     for l in data["Presets"]:
-        options.append("["+l["Alias"]+"] "+l["Name"])
-        flist.append(l["Path"])
-        ttsize.append(l["Amount"])
-        total = total+1
+        if l["Alias"] != "XXX":
+            options.append("["+l["Alias"]+"] "+l["Name"])
+            flist.append(l["Path"])
+            ttsize.append(l["Amount"])
+            total = total+1
     options.append("[s] Sair")
 
     ## Menu Linguagens
