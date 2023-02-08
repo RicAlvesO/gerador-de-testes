@@ -1,7 +1,7 @@
 import requests,json
 
 def syncer(file):
-    r = requests.get('https://ricalveso.github.io/gerador-de-testes/'+file).json()
+    r = requests.get('https://raw.githubusercontent.com/RicAlvesO/questions-api/main/'+file).json()
     """syncs local data with the API"""
     with open(file, 'w') as f:
         json.dump(r, f, indent=4)
@@ -9,7 +9,7 @@ def syncer(file):
 def main():
     """fetches data from the API updating local data files"""
     print('Downloading Data...', end='')
-    r = requests.get('https://ricalveso.github.io/gerador-de-testes/data/data.json').json()
+    r = requests.get('https://raw.githubusercontent.com/RicAlvesO/questions-api/main/data/data.json').json()
     with open('data/data.json', 'w') as f:
         json.dump(r, f, indent=4)
     print('DONE\n\nDownloading Languages:')
